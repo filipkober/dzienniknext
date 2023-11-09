@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Paź 2023, 13:32
+-- Czas generowania: 09 Lis 2023, 21:06
 -- Wersja serwera: 10.4.22-MariaDB
 -- Wersja PHP: 7.4.27
 
@@ -105,25 +105,30 @@ CREATE TABLE `uczniowie` (
 
 INSERT INTO `uczniowie` (`id`, `imie`, `nazwisko`, `punkty`, `plec`, `klasa`) VALUES
 (1, 'Anna', 'Kowalska', 95, 0, 1),
-(2, 'Jan', 'Nowak', 85, 0, 1),
-(3, 'Ewa', 'Lis', 92, 0, 1),
-(4, 'Piotr', 'Szymański', 88, 0, 1),
+(2, 'Jan', 'Nowak', 85, 1, 1),
+(3, 'Ewa', 'Lisek', 92, 0, 1),
+(4, 'Piotr', 'Szymański', 88, 1, 1),
 (5, 'Katarzyna', 'Wójcik', 78, 0, 1),
-(6, 'Michał', 'Kaczmarek', 75, 0, 1),
+(6, 'Michał', 'Kaczmarek', 75, 1, 1),
 (7, 'Magdalena', 'Dąbrowska', 90, 0, 1),
-(8, 'Krzysztof', 'Pawlak', 86, 0, 1),
+(8, 'Krzysztof', 'Pawlak', 86, 1, 1),
 (9, 'Barbara', 'Zielińska', 94, 0, 2),
-(10, 'Andrzej', 'Jaworski', 81, 0, 2),
+(10, 'Andrzej', 'Jaworski', 81, 1, 2),
 (11, 'Agnieszka', 'Górka', 89, 0, 2),
-(12, 'Marek', 'Wojda', 87, 0, 2),
+(12, 'Marek', 'Wojda', 87, 1, 2),
 (13, 'Joanna', 'Nowicka', 73, 0, 2),
-(14, 'Tomasz', 'Lewandowski', 77, 0, 2),
+(14, 'Tomasz', 'Lewandowski', 77, 1, 2),
 (15, 'Dorota', 'Mazurek', 92, 0, 2),
-(16, 'Rafał', 'Oleksy', 84, 0, 2),
+(16, 'Rafał', 'Oleksy', 84, 1, 2),
 (17, 'Iwona', 'Gajos', 91, 0, 2),
-(18, 'Łukasz', 'Górecki', 79, 0, 2),
+(18, 'Łukasz', 'Górecki', 79, 1, 2),
 (19, 'Alicja', 'Kowalczyk', 93, 0, 1),
-(20, 'Robert', 'Kubiak', 80, 0, 1);
+(20, 'Robert', 'Kubiak', 80, 1, 1),
+(21, 'Lucyfer', 'Szatan', 666, 1, 1),
+(22, 'Adam', 'Mickiewicz', -8, 1, 2),
+(23, 'Iron', 'Man', 0, 1, 1),
+(24, 'Wonder', 'Woman', 612, 0, 1),
+(25, 'George', 'Bushdid911', 415, 1, 2);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -155,6 +160,16 @@ ALTER TABLE `szkoly`
 ALTER TABLE `uczniowie`
   ADD PRIMARY KEY (`id`),
   ADD KEY `klasa` (`klasa`);
+
+--
+-- AUTO_INCREMENT dla zrzuconych tabel
+--
+
+--
+-- AUTO_INCREMENT dla tabeli `uczniowie`
+--
+ALTER TABLE `uczniowie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Ograniczenia dla zrzutów tabel
