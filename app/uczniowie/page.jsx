@@ -1,10 +1,17 @@
 "use client";
 
-import Uczen from "@/components/Uczen";
 import { useEffect, useState } from "react";
+import UczniowieTabela from "../../components/UczniowieTabela";
+import PanelEdycji from "@/components/PanelEdycji";
 
 export default function Uczniowie() {
   const [uczniowie, setUczniowie] = useState([]);
+  const [wybranyUczen, setWybranyUczen] = useState();
+
+  const wybierzUcznia = (id) => {
+    if(id == wybranyUczen?.id) return setWybranyUczen(undefined);
+    setWybranyUczen(uczniowie.find((uczen) => uczen.id === id));
+  };
 
   useEffect(() => {
     fetch("/api/uczniowie")
@@ -16,41 +23,18 @@ export default function Uczniowie() {
   }, []);
 
   return (
-    <div>
+    <div className="grid grid-cols-2 gap-x-[10%]">
       <h1 className="text-3xl mb-2">Uczniowie:</h1>
-      <table className="text-center">
-        <thead>
-          <tr className="bg-sky-200 text-white">
-            <th className="w-14 text-center">ID</th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Klasa</th>
-            <th className="w-14">Punkty</th>
-            <th>Płeć</th>
-          </tr>
-        </thead>
-        <tbody>
-          {uczniowie.map((uczen, index) => (
-            <Uczen
-              id={uczen.id}
-              imie={uczen.imie}
-              nazwisko={uczen.nazwisko}
-              klasa={uczen.klasaN}
-              punkty={uczen.punkty}
-              plec={uczen.plec}
-              index={index}
-              key={uczen.id}
-            />
-          ))}
-        </tbody>
-        <tfoot>
-          {uczniowie.length == 0 && (
-            <tr>
-              <td colSpan="6">Ładowanie...</td>
-            </tr>
-          )}
-        </tfoot>
-      </table>
+      <div className="col-start-1">
+        <UczniowieTabela
+          uczniowie={uczniowie}
+          wybierzUcznia={wybierzUcznia}
+          wybranyUczen={wybranyUczen}
+        />
+      </div>
+      <div>
+        <PanelEdycji wybranyUczen={wybranyUczen} setUczniowie={setUczniowie} wybierzUcznia={setWybranyUczen} />
+      </div>
     </div>
   );
 }

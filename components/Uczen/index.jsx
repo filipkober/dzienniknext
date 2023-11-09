@@ -5,7 +5,9 @@ export default function Uczen({
     klasa,
     punkty,
     plec,
-    index
+    index,
+    wybrany = false,
+    wybierz
 }) {
     return (
         <tr className={index % 2 == 0 ? 'bg-slate-400' : 'bg-slate-500'}>
@@ -15,6 +17,7 @@ export default function Uczen({
             <td>{klasa}</td>
             <td>{punkty}</td>
             <td>{plec === 0 ? 'kobieta' : 'mężczyzna'}</td>
+            <td><input type="checkbox" checked={wybrany} onChange={wybierz}/></td>
         </tr>
     );
 }
