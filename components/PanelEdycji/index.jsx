@@ -7,7 +7,7 @@ export default function PanelEdycji({wybranyUczen, setUczniowie, wybierzUcznia})
     const [plec, setPlec] = useState(wybranyUczen ? wybranyUczen.plec : 0);
     const [imie, setImie] = useState(wybranyUczen ? wybranyUczen.imie : "");
     const [nazwisko, setNazwisko] = useState(wybranyUczen ? wybranyUczen.nazwisko : "");
-    const [klasa, setKlasa] = useState(wybranyUczen ? (klasy ? (klasy.find((k) => k.nazwa == wybranyUczen.klasaN).id) : -1) : -1);
+    const [klasa, setKlasa] = useState(wybranyUczen ? wybranyUczen.klasa : -1);
     const [punkty, setPunkty] = useState(wybranyUczen ? wybranyUczen.punkty : 0);
     const [potwierdzUsuniecie, setPotwierdzUsuniecie] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ export default function PanelEdycji({wybranyUczen, setUczniowie, wybierzUcznia})
         setPlec(wybranyUczen ? wybranyUczen.plec : 0);
         setImie(wybranyUczen ? wybranyUczen.imie : "");
         setNazwisko(wybranyUczen ? wybranyUczen.nazwisko : "");
-        setKlasa(wybranyUczen ? klasy.find((k) => k.nazwa == wybranyUczen.klasaN).id : -1);
+        setKlasa(wybranyUczen ? wybranyUczen.klasa : -1);
         setPunkty(wybranyUczen ? wybranyUczen.punkty : 0);
         setPotwierdzUsuniecie(false);
     }, [wybranyUczen]);
@@ -26,7 +26,6 @@ export default function PanelEdycji({wybranyUczen, setUczniowie, wybierzUcznia})
             .then((res) => res.json())
             .then((data) => {
                 setKlasy(data);
-                setKlasa(wybranyUczen ? klasy.find((k) => k.nazwa == wybranyUczen.klasaN).id : -1)
                 setLoading(false);
             });
     }, []);
@@ -43,9 +42,10 @@ export default function PanelEdycji({wybranyUczen, setUczniowie, wybierzUcznia})
                 plec
             })
         })
+        setLoading(false)
         const nowy = await res.json();
-        setUczniowie((prev) => [...prev, nowy]);
-        wybierzUcznia(nowy.id);
+        setUczniowie((prev) => [...prev, nowy[0]]);
+        wybierzUcznia(nowy[0])
     };
 
     const usunUcznia = async () => {
@@ -88,7 +88,7 @@ export default function PanelEdycji({wybranyUczen, setUczniowie, wybierzUcznia})
     };
 
     return(
-        <div className="col-start-2 bg-slate-400 rounded-md">
+        <div className="col-start-2 bg-slate-400 rounded-md w-full">
             <h1 className="text-3xl pt-4 pl-4 text-white ">Uczeń: {wybranyUczen ? `${wybranyUczen.imie} ${wybranyUczen.nazwisko}` : "nie wybrano"}</h1>
             <form className="flex flex-col gap-y-2 p-4">
                 <label className="flex flex-col gap-y-1">

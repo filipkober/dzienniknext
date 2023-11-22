@@ -2,7 +2,7 @@ import Uczen from "../Uczen"
 
 export default function UczniowieTabela({uczniowie, wybierzUcznia, wybranyUczen}){
     return (
-        <table className="text-center">
+        <table className="text-center w-full">
         <thead>
           <tr className="bg-sky-200 text-white">
             <th className="w-14 text-center">ID</th>
