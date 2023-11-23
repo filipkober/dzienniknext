@@ -17,7 +17,6 @@ export default function Uczniowie() {
     fetch("/api/uczniowie")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUczniowie(data);
       });
   }, []);

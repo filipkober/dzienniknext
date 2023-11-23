@@ -9,7 +9,7 @@ export async function GET(request) {
   });
 
   const [rows] = await connection.execute(
-    `SELECT * FROM Klasy;`
+    `SELECT klasy.*, nauczyciele.imie as WI, nauczyciele.nazwisko as WN FROM klasy INNER JOIN nauczyciele ON klasy.wychowawca = nauczyciele.id;`
   );
   return NextResponse.json(rows);
 }

@@ -8,7 +8,7 @@ export async function GET(request) {
         database: 'dziennik'
     })
 
-    const [rows] = await connection.execute("SELECT * FROM nauczyciele");
+    const [rows] = await connection.execute("SELECT * FROM szkoly");
     connection.end();
     return NextResponse.json(rows)
 }
