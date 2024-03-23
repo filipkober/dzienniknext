@@ -1,8 +1,7 @@
-# Dziennik w NextJS
+# dzienniknext
 
-## Jak działa NextJS
+## 🇵🇱
+To prosta aplikacja CRUD w NextJS napisana na potrzeby szkolne, mająca na celu zasymulować proste funkcjonalności dziennika elektronicznego. Frontend aplikacji komunikuje się z bazą danych w MySQL
 
-w folderze app wszystkie foldery z plikiem page.js są przypisywane do adresów  
-np. folder /app/pages/about/ z plikiem index.js będzie dostępny pod adresem localhost:3000/about/  
-pliki route.js odpowiadają za ścieki API, w nicz eksportujemy funkcje nazwane tak samo jak metody HTTP
-każda strona jest komponentem Reacta, aby móc używać funkcji takich jak useState, useEffect, na początku pliku musimy napisać "use client"
+## 🇺🇸 
+This is a simple NextJS CRUD app written as a school assignment. Its' goal is to simulate very simple functions of a school register system. The frontend of this application communicates with an external MySQL database
